@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+  <head>
+    <title th:replace="fragments/fragment :: title"></title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+  </head>
+
+  <body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
+    <div class="container-fluid">
+      <h2>Hello!</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              Tambah Dealer
+            </div>
+            <div class="card-body">
+              <p class="card-text">Fitur untuk menambah dealer.</p>
+              <a th:href="@{/dealer/add}" class="btn btn-primary">Tambah</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              Cari Dealer Berdasarkan Id
+            </div>
+            <form th:action="@{/dealer/view}" method="GET">
+              <div class="card-body">
+                <label for="dealerId">Id Dealer:</label>
+                <input type="text" name="dealerId" class="form-control" />
+                <button type="submit" class="btn btn-primary">Cari</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <br>
+      <h3>All Dealer</h3>
+      <ol>
+        <li th:each="dealer : ${dealer_list}">
+          <h4 th:text="'Dealer ID: ' + ${dealer.id}"></h4>
+          <h4 th:text="'Dealer Alamat: ' + ${dealer.alamat}"></h4>
+          <form th:action="@{'/dealer/view'}" method="GET">
+            <input type="text" name="dealerId" th:value="${dealer.id}" hidden/>
+            <button type="submit">View Dealer</button>
+          </form>
+          <form th:action="@{'/dealer/edit/' + ${dealer.id}}" method="GET">
+            <button type="submit">Update Dealer</button>
+          </form>
+          <form th:action="@{'/dealer/delete/' + ${dealer.id}}" method="POST">
+            <button type="submit">Delete Dealer</button>
+          </form>
+          <ul>
+            <li th:each="car : ${dealer.getListCar()}">
+              <h5 th:text="'Brand: ' + ${car.brand} + ' - Amount: ' + ${car.amount} + ' - Price: ' + ${car.price}"></h5>
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </body>
+</html>
