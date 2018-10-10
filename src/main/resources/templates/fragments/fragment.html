@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.com">
   <head>
-    <!-- <title th:fragment="home">Home</title> -->
+    <title th:fragment="title" th:text="${pageTitle}"></title>
 
     <head th:fragment="css">
       <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+      <link rel="stylesheet" th:href="@{/css/myCSS.css}">
     </head>
 
     <head th:fragment="js">

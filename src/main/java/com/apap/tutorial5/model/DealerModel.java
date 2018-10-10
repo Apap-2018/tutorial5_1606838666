@@ -69,22 +69,27 @@ public class DealerModel implements Serializable {
 	}
 	
 	public List<CarModel> getListCar() {
-		int n = listCar.size(); 
-        for (int i=1; i<n; ++i) 
-        { 
-            CarModel key = listCar.get(i); 
-            int j = i-1; 
-  
-            /* Move elements of arr[0..i-1], that are 
-               greater than key, to one position ahead 
-               of their current position */
-            while (j>=0 && listCar.get(j).getPrice() < key.getPrice()) 
-            { 	
-            	listCar.set(j+1, listCar.get(j));
-                j = j-1; 
-            } 
-            listCar.set(j+1, key); 
-        }
+		try {
+			int n = listCar.size(); 
+	        for (int i=1; i<n; ++i) 
+	        { 
+	            CarModel key = listCar.get(i); 
+	            int j = i-1; 
+	  
+	            /* Move elements of arr[0..i-1], that are 
+	               greater than key, to one position ahead 
+	               of their current position */
+	            while (j>=0 && listCar.get(j).getPrice() < key.getPrice()) 
+	            { 	
+	            	listCar.set(j+1, listCar.get(j));
+	                j = j-1; 
+	            } 
+	            listCar.set(j+1, key); 
+	        }			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return listCar;
+		}
 		return listCar;
 	}
 }

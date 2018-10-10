@@ -42,6 +42,7 @@
         </div>
       </div>
       <br>
+
       <h3>All Dealer</h3>
       <ol>
         <li th:each="dealer : ${dealer_list}">
@@ -49,17 +50,17 @@
           <h4 th:text="'Dealer Alamat: ' + ${dealer.alamat}"></h4>
           <form th:action="@{'/dealer/view'}" method="GET">
             <input type="text" name="dealerId" th:value="${dealer.id}" hidden/>
-            <button type="submit">View Dealer</button>
+            <button type="submit" class="btn btn-primary">View Dealer</button>
           </form>
           <form th:action="@{'/dealer/edit/' + ${dealer.id}}" method="GET">
-            <button type="submit">Update Dealer</button>
+            <button type="submit" class="btn btn-success">Update Dealer</button>
           </form>
           <form th:action="@{'/dealer/delete/' + ${dealer.id}}" method="POST">
-            <button type="submit">Delete Dealer</button>
+            <button type="submit" class="btn btn-danger">Delete Dealer</button>
           </form>
           <ul>
             <li th:each="car : ${dealer.getListCar()}">
-              <h5 th:text="'Brand: ' + ${car.brand} + ' - Amount: ' + ${car.amount} + ' - Price: ' + ${car.price}"></h5>
+              <h5 th:text="'Brand: ' + ${car.brand} + ' - Type: ' + ${car.type} + ' - Amount: ' + ${car.amount} + ' - Price: ' + ${car.price}"></h5>
             </li>
           </ul>
         </li>

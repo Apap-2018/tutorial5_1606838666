@@ -62,7 +62,7 @@ public class DealerController {
 		Long id = dealer.getId();
 		List<CarModel> car_list = dealer.getListCar();
 
-		model.addAttribute("dealerID", id);
+		model.addAttribute("dealerId", id);
 		model.addAttribute("alamat", alamat);
 		model.addAttribute("no_telp", no_telp);
 		model.addAttribute("car_list", car_list);

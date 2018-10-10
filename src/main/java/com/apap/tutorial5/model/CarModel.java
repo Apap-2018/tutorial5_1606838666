@@ -39,7 +39,7 @@ public class CarModel {
 	
 	@NotNull
 	@Size(max = 50)
-	@Column(name = "type", nullable = false, unique = true)
+	@Column(name = "type", nullable = false)
 	private String type;
 	
 	@NotNull

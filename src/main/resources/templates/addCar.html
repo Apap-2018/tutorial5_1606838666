@@ -12,21 +12,41 @@
     <h2>Hello!</h2>
 
     <h3>Tambah Mobil</h3>
-    <form th:action="@{'/car/add/' + ${dealerID}}" th:object="${car}" method="POST">
-      <input type="hidden" th:field="*{dealer}" />
-      Brand: <br>
-      <input type="text" name="brand" />
-      <br>
-      Type: <br>
-      <input type="text" name="type" />
-      <br>
-      Price : <br>
-      <input type="number" name="price" />
-      <br>
-      Amount: <br>
-      <input type="number" name="amount" />
-      <br><br>
-      <button type="submit">Submit</button>
+    <form th:action="@{'/car/add/' + ${dealerId}}" th:object="${dealer}" method="POST">
+      <input  type="hidden" th:field="*{id}"></input>
+      <table>
+        <thead>
+          <tr>
+            <th>Brand:</th>
+            <th>Type:</th>
+            <th>Price :</th>
+            <th>Amount:</th>
+            <th>
+              <button type="submit" class="btn btn-primary" name="addRow">Tambah</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr th:each="car, indexRow : *{listCar}">
+            <td>
+              <input type="text" th:field="*{listCar[__${indexRow.index}__].brand}" />
+            </td>
+            <td>
+              <input type="text" th:field="*{listCar[__${indexRow.index}__].type}" />
+            </td>
+            <td>
+              <input type="number" th:field="*{listCar[__${indexRow.index}__].price}" />
+            </td>
+            <td>
+			        <input type="number" th:field="*{listCar[__${indexRow.index}__].amount}" />
+            </td>
+            <td>
+              <button type="submit" class="btn btn-danger" name="removeRow" th:value="${indexRow.index}">Hapus Row</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" name="addAllCar" class="btn btn-success">Submit</button>
     </form>
   </body>
 

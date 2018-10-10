@@ -13,11 +13,11 @@
       <h3 th:text="'Dealer'"></h3>
       <h5 th:text="'Alamat: ' + ${alamat}"></h5>
       <h5 th:text="'Telepon: ' + ${no_telp}"></h5>
-      <form th:action="@{'/dealer/delete/' + ${dealerID}}" method="POST">
-        <button type="submit">Delete Dealer</button>
+      <form th:action="@{'/dealer/delete/' + ${dealerId}}" method="POST">
+        <button type="submit" class="btn btn-danger">Delete Dealer</button>
       </form>
 
-      <form th:action="@{'/car/delete/' + ${dealerID}}" th:object="${dealer}" method="post">
+      <form th:action="@{'/car/delete/' + ${dealerId}}" th:object="${dealer}" method="post">
         <table>
           <thead>
             <tr>
@@ -25,6 +25,7 @@
               <th>Brand</th>
               <th>Type</th>
               <th>Price</th>
+              <th>Status</th>
               <th>Amount</th>
               <th>Aksi</th>
               <th>Aksi lainnya</th>
@@ -35,6 +36,7 @@
               <td th:text="${index.count}"></td>
               <td th:text="${car.brand}"></td>
               <td th:text="${car.type}"></td>
+              <td th:text="${car.price}"></td>
               <td th:text="${car.price} >= 1000000000 ? 'Diatas 1M' : 'Dibawah 1M'"></td>
               <td th:text="${car.amount}"></td>
               <td>
@@ -42,17 +44,18 @@
                 <label th:for="${#ids.prev('listCar')}">Hapus</label>
               </td>
               <td>
-                <a th:href="@{'/car/edit/' + ${dealerID} + '/' + ${car.id}}" type="submit">Update Car</a>
+                <a th:href="@{'/car/edit/' + ${dealerId} + '/' + ${car.id}}" type="submit">Update Car</a>
               </td>
             </tr>
           </tbody>
         </table>
-        <button type="submit">Hapus yang dipilih</button>
+        <button type="submit" class="btn btn-danger">Hapus yang dipilih</button>
       </form>
 
       <br>
       <td>
-        <a th:href="@{'/car/add/' + ${dealerID}}">Add Car</a>
+        <a th:href="@{'/car/add/' + ${dealerId}}">Add Car</a>
+        <br>
         <a th:href="@{/}">Home</a>
       </td>
     </div>
